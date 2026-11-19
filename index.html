@@ -164,6 +164,76 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
     }
+  
+    .sound-toggle { width: 44px; height: 44px; }
+    .settings-toggle {
+      min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      padding: 0 11px; border: 1px solid rgba(213,145,174,.28); border-radius: 13px; color: #80586b;
+      cursor: pointer; background: rgba(255,255,255,.78); box-shadow: 0 3px 10px rgba(130,92,110,.08);
+      font-size: 12px; font-weight: 800; transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .settings-toggle:hover:not(:disabled) { transform: translateY(-1px); border-color: #d99db5; background: #fff; }
+    .settings-toggle:disabled { cursor: wait; opacity: .55; }
+    .settings-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .settings-dialog {
+      width: min(640px, calc(100vw - 32px)); max-width: none; max-height: min(86vh, 820px); max-height: min(86dvh, 820px);
+      margin: auto; padding: 0; overflow: hidden; border: 1px solid #e7d5df; border-radius: 23px;
+      color: #4b3b48; background: #fffafc; box-shadow: 0 28px 90px rgba(88, 56, 75, .28);
+    }
+    .settings-dialog::backdrop { background: rgba(59, 40, 53, .42); backdrop-filter: blur(3px); }
+    .settings-shell { max-height: inherit; display: flex; flex-direction: column; }
+    .settings-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 22px 23px 15px; border-bottom: 1px solid #eee2e8; }
+    .settings-header h2 { margin: 0; font-size: 21px; line-height: 1.35; font-weight: 900; }
+    .settings-header p { margin: 6px 0 0; color: #665563; font-size: 13px; line-height: 1.6; }
+    .settings-close { width: 44px; height: 44px; flex: 0 0 44px; display: grid; place-items: center; border: 1px solid #e8dce3; border-radius: 13px; color: #65505d; cursor: pointer; background: #fff; }
+    .settings-close:hover { border-color: #d89ab3; background: #fff3f7; }
+    .settings-close svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+    .settings-summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 23px; background: #fff3f7; }
+    .settings-summary strong { flex: 0 0 auto; color: #80415d; font-size: 14px; font-variant-numeric: tabular-nums; }
+    .settings-summary p { margin: 0; color: #624c5a; font-size: 12px; line-height: 1.5; text-align: right; }
+    #shareStatus[data-state="error"] { color: #8f334e; }
+    #shareStatus[data-state="success"] { color: #3f7152; }
+    .settings-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 23px 9px; color: #655361; font-size: 12px; font-weight: 800; }
+    .equal-share-button { min-height: 44px; padding: 0 13px; border: 1px solid #e4cbd7; border-radius: 12px; color: #8c4d67; cursor: pointer; background: #fff; font-size: 12px; font-weight: 800; }
+    .equal-share-button:hover:not(:disabled) { border-color: #d18ca7; background: #fff1f6; }
+    .equal-share-button:disabled { color: #867982; cursor: not-allowed; background: #f5f1f3; }
+    .settings-list { flex: 1 1 auto; min-height: 0; max-height: 50vh; overflow: auto; overscroll-behavior: contain; padding: 0 23px 8px; scrollbar-color: #c9aebc #f8eff3; scrollbar-width: thin; }
+    .share-row { min-height: 59px; display: grid; grid-template-columns: minmax(0, 1fr) 132px; align-items: center; gap: 16px; padding: 7px 0; border-bottom: 1px solid #eee5e9; }
+    .share-row:last-child { border-bottom: 0; }
+    .share-name-wrap { min-width: 0; display: flex; align-items: center; gap: 10px; }
+    .share-index { width: 28px; height: 28px; flex: 0 0 28px; display: grid; place-items: center; border-radius: 9px; color: #79576a; background: #f5e8ef; font-size: 11px; font-weight: 900; font-variant-numeric: tabular-nums; }
+    .share-name { color: #4b3b48; font-size: 14px; font-weight: 700; line-height: 1.45; overflow-wrap: anywhere; }
+    .share-input-wrap { display: flex; align-items: center; gap: 7px; }
+    .share-input { width: 100%; min-width: 0; min-height: 44px; padding: 0 10px; border: 1px solid #d9c4d0; border-radius: 11px; outline: none; color: #493844; background: #fff; font: inherit; font-size: 14px; font-variant-numeric: tabular-nums; text-align: right; }
+    .share-input:focus-visible { border-color: #b95b80; }
+    .share-unit { color: #665563; font-size: 13px; font-weight: 800; }
+    .settings-empty { padding: 24px 4px; color: #665563; font-size: 13px; line-height: 1.7; text-align: center; }
+    .settings-footer { padding: 14px 23px 20px; border-top: 1px solid #eee2e8; }
+    .settings-done { width: 100%; min-height: 48px; border: 0; border-radius: 14px; color: #fff; cursor: pointer; background: linear-gradient(145deg, #d986a5, #c36f92); font-size: 15px; font-weight: 900; box-shadow: 0 6px 15px rgba(181, 98, 134, .2); }
+    .settings-done:hover { filter: brightness(1.04); }
+    @media (max-width: 560px) {
+      .settings-dialog { width: calc(100vw - 20px); max-height: calc(100vh - 20px); max-height: calc(100dvh - 20px); border-radius: 19px; }
+      .settings-header { padding: 18px 16px 13px; }
+      .settings-header h2 { font-size: 19px; }
+      .settings-summary { align-items: flex-start; padding: 12px 16px; }
+      .settings-summary p { max-width: 58%; }
+      .settings-toolbar { padding-inline: 16px; }
+      .settings-list { max-height: 52vh; padding-inline: 16px; }
+      .share-row { grid-template-columns: minmax(0, 1fr) 112px; gap: 10px; }
+      .share-name { font-size: 13px; }
+      .settings-footer { padding: 12px 16px 16px; }
+      .wheel-heading { flex-wrap: wrap; }
+      .wheel-heading h2 { width: 100%; }
+      .wheel-controls { width: 100%; justify-content: flex-end; }
+    }
+    @media (max-width: 360px) {
+      .settings-header { gap: 8px; }
+      .share-row { grid-template-columns: minmax(0, 1fr) 96px; gap: 7px; }
+      .share-input { padding-inline: 7px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .settings-toggle, .settings-done { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -180,7 +250,7 @@
       <section class="card wheel-card" aria-label="隨機抽選轉盤">
         <div class="wheel-heading">
           <h2>準備好轉動了嗎？</h2>
-          <div class="wheel-controls"><button class="sound-toggle" id="soundToggle" type="button" aria-pressed="true" aria-label="關閉轉盤音效" title="音效開啟">🔊</button><span class="count-pill" id="optionCount">0 個選項</span></div>
+          <div class="wheel-controls"><button class="sound-toggle" id="soundToggle" type="button" aria-pressed="true" aria-label="關閉轉盤音效" title="音效開啟">🔊</button><button class="settings-toggle" id="settingsToggle" type="button" aria-haspopup="dialog" aria-controls="settingsDialog" aria-expanded="false" aria-label="設定各選項占比" title="設定占比"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"></path><path d="m19.4 13.5 1.2.9-1.5 2.6-1.4-.6a7.8 7.8 0 0 1-1.7 1l-.2 1.5h-3l-.3-1.5a7.8 7.8 0 0 1-1.7-1l-1.4.6-1.5-2.6 1.2-.9a7.8 7.8 0 0 1 0-2l-1.2-.9 1.5-2.6 1.4.6a7.8 7.8 0 0 1 1.7-1l.3-1.5h3l.2 1.5a7.8 7.8 0 0 1 1.7 1l1.4-.6 1.5 2.6-1.2.9a7.8 7.8 0 0 1 0 2z"></path></svg><span>設定</span></button><span class="count-pill" id="optionCount">0 個選項</span></div>
         </div>
         <div class="wheel-wrap">
           <canvas id="wheel" aria-label="可自訂選項的馬卡龍色轉盤"></canvas>
@@ -215,9 +285,36 @@
     </div>
   </main>
 
+      <dialog class="settings-dialog" id="settingsDialog" aria-labelledby="settingsTitle" aria-describedby="settingsIntro">
+        <section class="settings-shell">
+          <header class="settings-header">
+            <div>
+              <h2 id="settingsTitle" tabindex="-1">調整轉盤占比</h2>
+              <p id="settingsIntro">每項占比同時決定扇形大小與抽中機率，總和需為 100%。</p>
+            </div>
+            <button class="settings-close" id="closeSettings" type="button" aria-label="關閉設定">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+            </button>
+          </header>
+          <div class="settings-summary">
+            <strong id="shareTotal">總和 0%</strong>
+            <p id="shareStatus" data-state="neutral" role="status" aria-live="polite">每行代表一個獨立選項。</p>
+          </div>
+          <div class="settings-toolbar">
+            <span>每個選項</span>
+            <button class="equal-share-button" id="equalShareButton" type="button">平均分配</button>
+          </div>
+          <div class="settings-list" id="settingsList" aria-label="各選項占比"></div>
+          <footer class="settings-footer">
+            <button class="settings-done" id="doneSettings" type="button">完成</button>
+          </footer>
+        </section>
+      </dialog>
+
   <script>
     (() => {
       const STORAGE_KEY = "macaron-wheel-options-v1";
+      const SHARE_STORAGE_KEY = "macaron-wheel-shares-v1";
       const TAU = Math.PI * 2;
       const colors = ["#f4b5c8", "#f7c897", "#f8dfa0", "#b9ddc4", "#a9d9dc", "#b7c9ed", "#cbb9e8", "#e3b8d4"];
       const canvas = document.getElementById("wheel");
@@ -225,6 +322,15 @@
       const input = document.getElementById("optionsInput");
       const spinButton = document.getElementById("spinButton");
       const clearButton = document.getElementById("clearButton");
+      const settingsToggle = document.getElementById("settingsToggle");
+      const settingsDialog = document.getElementById("settingsDialog");
+      const settingsTitle = document.getElementById("settingsTitle");
+      const closeSettingsButton = document.getElementById("closeSettings");
+      const doneSettingsButton = document.getElementById("doneSettings");
+      const equalShareButton = document.getElementById("equalShareButton");
+      const settingsList = document.getElementById("settingsList");
+      const shareTotal = document.getElementById("shareTotal");
+      const shareStatus = document.getElementById("shareStatus");
       const winner = document.getElementById("winner");
       const resultHint = document.getElementById("resultHint");
       const countLabel = document.getElementById("optionCount");
@@ -232,13 +338,17 @@
       const validationHint = document.getElementById("validationHint");
       const saveStatus = document.getElementById("saveStatus");
       let entries = [];
+      let shares = [];
+      let shareDraft = null;
+      let draftInvalid = false;
       let rotation = 0;
       let spinning = false;
       const SOUND_STEP = Math.PI;
       let soundEnabled = true;
       let soundContext = null;
       let lastSoundMark = 0;
-  
+      let animationFrame = 0;
+
       function getSoundContext() {
         if (!soundEnabled) return null;
         const AudioContextClass = window.AudioContext || window.webkitAudioContext;
@@ -247,7 +357,7 @@
         if (soundContext.state === "suspended") soundContext.resume().catch(() => {});
         return soundContext;
       }
-  
+
       function playWheelTone(frequency, delay, duration, volume, type) {
         const audio = getSoundContext();
         if (!audio) return;
@@ -264,22 +374,22 @@
         oscillator.start(start);
         oscillator.stop(start + duration + 0.02);
       }
-  
+
       function wheelSpinSound() {
         playWheelTone(460, 0, 0.075, 0.035, "sine");
       }
-  
+
       function wheelTickSound() {
         playWheelTone(980, 0, 0.026, 0.035, "triangle");
       }
-  
+
       function wheelWinSound() {
         if (!soundEnabled) return;
         playWheelTone(660, 0, 0.13, 0.045, "sine");
         playWheelTone(784, 0.12, 0.15, 0.045, "sine");
         playWheelTone(1047, 0.25, 0.25, 0.05, "sine");
       }
-  
+
       function updateSoundButton() {
         const button = document.getElementById("soundToggle");
         button.textContent = soundEnabled ? "🔊" : "🔇";
@@ -287,30 +397,326 @@
         button.setAttribute("aria-label", soundEnabled ? "關閉轉盤音效" : "開啟轉盤音效");
         button.title = soundEnabled ? "音效開啟" : "音效關閉";
       }
-  
+
       document.getElementById("soundToggle").addEventListener("click", () => {
         soundEnabled = !soundEnabled;
         updateSoundButton();
         if (soundEnabled) getSoundContext();
       });
       updateSoundButton();
-  
-  
-      let animationFrame = 0;
-
-      try {
-        input.value = localStorage.getItem(STORAGE_KEY) || "";
-      } catch (error) {
-        saveStatus.lastElementChild.textContent = "瀏覽器未允許本機保存";
-      }
 
       function normalize(angle) {
         return ((angle % TAU) + TAU) % TAU;
       }
 
       function parseEntries(value) {
-        return value.split(/\r?\n/).map((entry) => entry.trim()).filter(Boolean);
+        return value.split(/\r?\n/).map(entry => entry.trim()).filter(Boolean);
       }
+
+      function entryKeys(names) {
+        const counts = new Map();
+        return names.map(name => {
+          const occurrence = counts.get(name) || 0;
+          counts.set(name, occurrence + 1);
+          return JSON.stringify([name, occurrence]);
+        });
+      }
+
+      function equalPercentages(count) {
+        if (!count) return [];
+        const totalUnits = 10000;
+        const base = Math.floor(totalUnits / count);
+        const remainder = totalUnits - base * count;
+        return Array.from({ length: count }, (_, index) => (base + (index < remainder ? 1 : 0)) / 100);
+      }
+
+      function normalizePercentages(values) {
+        if (!values.length) return [];
+        const safeValues = values.map(value => {
+          const number = Number(value);
+          return Number.isFinite(number) ? Math.max(0, number) : 0;
+        });
+        const total = safeValues.reduce((sum, value) => sum + value, 0);
+        if (total <= 0) return equalPercentages(values.length);
+        const exactUnits = safeValues.map(value => value / total * 10000);
+        const units = exactUnits.map(Math.floor);
+        let remaining = 10000 - units.reduce((sum, value) => sum + value, 0);
+        const remainderOrder = exactUnits.map((value, index) => ({ index, fraction: value - units[index] }))
+          .sort((a, b) => b.fraction - a.fraction);
+        for (let i = 0; i < remaining; i++) units[remainderOrder[i % remainderOrder.length].index] += 1;
+        return units.map(value => value / 100);
+      }
+
+      function percentagesHaveValidTotal(values) {
+        return values.length > 0 &&
+          values.every(value => Number.isFinite(value) && value >= 0 && value <= 100) &&
+          values.reduce((sum, value) => sum + Math.round(value * 100), 0) === 10000;
+      }
+
+      function loadSavedShares(names) {
+        if (!names.length) return [];
+        try {
+          const raw = localStorage.getItem(SHARE_STORAGE_KEY);
+          if (!raw) return null;
+          const saved = JSON.parse(raw);
+          if (!saved || saved.version !== 1 || !Array.isArray(saved.items)) return null;
+          const byKey = new Map(saved.items.map(item => [item.key, Number(item.value)]));
+          const keys = entryKeys(names);
+          const values = keys.map(key => byKey.has(key) ? byKey.get(key) : NaN);
+          if (!percentagesHaveValidTotal(values)) return null;
+          return values.map(value => Math.round(value * 100) / 100);
+        } catch (error) {
+          return null;
+        }
+      }
+
+      function saveShares() {
+        try {
+          if (!entries.length) {
+            localStorage.removeItem(SHARE_STORAGE_KEY);
+            return;
+          }
+          const keys = entryKeys(entries);
+          const items = entries.map((name, index) => ({ key: keys[index], value: shares[index] }));
+          localStorage.setItem(SHARE_STORAGE_KEY, JSON.stringify({ version: 1, items }));
+        } catch (error) {
+          saveStatus.lastElementChild.textContent = "瀏覽器無法保存占比";
+        }
+      }
+
+      function reconcileShares(oldEntries, oldShares, newEntries) {
+        if (!newEntries.length) return [];
+        if (!oldEntries.length || !oldShares.length) return equalPercentages(newEntries.length);
+        const oldKeys = entryKeys(oldEntries);
+        const newKeys = entryKeys(newEntries);
+        const oldIndexByKey = new Map(oldKeys.map((key, index) => [key, index]));
+        const nextShares = Array(newEntries.length).fill(null);
+        const usedOld = new Set();
+
+        newKeys.forEach((key, index) => {
+          const oldIndex = oldIndexByKey.get(key);
+          if (oldIndex !== undefined && !usedOld.has(oldIndex)) {
+            nextShares[index] = oldShares[oldIndex];
+            usedOld.add(oldIndex);
+          }
+        });
+
+        newEntries.forEach((_, index) => {
+          if (nextShares[index] !== null) return;
+          if (index < oldEntries.length && !usedOld.has(index)) {
+            nextShares[index] = oldShares[index];
+            usedOld.add(index);
+          }
+        });
+
+        const newEntryDefault = 100 / oldEntries.length;
+        const values = nextShares.map(value => value === null ? newEntryDefault : value);
+        return normalizePercentages(values);
+      }
+
+      function formatPercent(value) {
+        return Number(Number(value).toFixed(2)).toString();
+      }
+
+      function updateSpinState() {
+        const sumValid = percentagesHaveValidTotal(shares);
+        const activeCount = shares.filter(value => value > 0).length;
+        const canSpin = entries.length >= 2 && sumValid && activeCount >= 2 && !draftInvalid;
+        spinButton.disabled = spinning || !canSpin;
+        settingsToggle.disabled = spinning;
+        settingsToggle.setAttribute("aria-disabled", String(spinning));
+        clearButton.disabled = spinning || input.value.length === 0;
+      }
+
+      function updateWheelCaption() {
+        if (!entries.length) {
+          wheelCaption.textContent = "先在下方加入至少兩個選項";
+        } else if (entries.length < 2) {
+          wheelCaption.textContent = "再加入一個選項就可以開始";
+        } else if (draftInvalid) {
+          wheelCaption.textContent = "請完成設定，讓各項占比總和等於 100%";
+        } else if (shares.filter(value => value > 0).length < 2) {
+          wheelCaption.textContent = "至少兩個選項的占比需大於 0% 才能開始";
+        } else if (entries.length > 24) {
+          wheelCaption.textContent = "已加入 " + entries.length + " 個選項 · 占比同步決定扇形與抽中機率";
+        } else {
+          wheelCaption.textContent = "已加入 " + entries.length + " 個選項 · 可在設定中調整占比";
+        }
+      }
+
+      function updateOptions() {
+        const nextEntries = parseEntries(input.value);
+        shares = reconcileShares(entries, shares, nextEntries);
+        entries = nextEntries;
+        draftInvalid = false;
+        countLabel.textContent = entries.length + " 個選項";
+        updateSpinState();
+
+        if (entries.length < 2) {
+          validationHint.textContent = "輸入至少兩個選項即可開始轉動。清單與占比只保存在目前的瀏覽器。";
+        } else if (entries.length > 24) {
+          validationHint.textContent = "每項占比同時決定扇形大小和抽中機率。選項超過 24 個時會隱藏扇形文字，抽選結果仍會顯示。";
+        } else {
+          validationHint.textContent = "每項占比同時決定扇形大小和抽中機率。每一行都是獨立選項，清單與占比只保存在目前的瀏覽器。";
+        }
+
+        try {
+          localStorage.setItem(STORAGE_KEY, input.value);
+          if (saveStatus.lastElementChild.textContent !== "瀏覽器未允許本機保存" &&
+              saveStatus.lastElementChild.textContent !== "瀏覽器無法保存占比") {
+            saveStatus.lastElementChild.textContent = "自動保存在這台裝置";
+          }
+        } catch (error) {
+          saveStatus.lastElementChild.textContent = "本機保存空間不可用";
+        }
+
+        saveShares();
+        updateWheelCaption();
+        drawWheel();
+      }
+
+      function renderSettings() {
+        settingsList.replaceChildren();
+        if (!entries.length) {
+          const empty = document.createElement("p");
+          empty.className = "settings-empty";
+          empty.textContent = "先在清單加入選項，就能為每一項設定占比。";
+          settingsList.append(empty);
+          equalShareButton.disabled = true;
+          shareTotal.textContent = "總和 0%";
+          shareStatus.textContent = "目前沒有可調整的選項。";
+          shareStatus.dataset.state = "neutral";
+          return;
+        }
+
+        equalShareButton.disabled = false;
+        const values = shares.slice();
+        entries.forEach((name, index) => {
+          const row = document.createElement("label");
+          row.className = "share-row";
+
+          const nameWrap = document.createElement("span");
+          nameWrap.className = "share-name-wrap";
+
+          const number = document.createElement("span");
+          number.className = "share-index";
+          number.textContent = String(index + 1).padStart(2, "0");
+
+          const nameLabel = document.createElement("span");
+          nameLabel.className = "share-name";
+          nameLabel.textContent = name;
+
+          nameWrap.append(number, nameLabel);
+
+          const inputWrap = document.createElement("span");
+          inputWrap.className = "share-input-wrap";
+
+          const shareInput = document.createElement("input");
+          shareInput.className = "share-input";
+          shareInput.type = "number";
+          shareInput.min = "0";
+          shareInput.max = "100";
+          shareInput.step = "0.01";
+          shareInput.inputMode = "decimal";
+          shareInput.value = formatPercent(values[index] || 0);
+          shareInput.setAttribute("aria-label", "第 " + (index + 1) + " 項「" + name + "」占比百分比");
+
+          const unit = document.createElement("span");
+          unit.className = "share-unit";
+          unit.textContent = "%";
+
+          inputWrap.append(shareInput, unit);
+          row.append(nameWrap, inputWrap);
+          settingsList.append(row);
+        });
+        validateShareInputs();
+      }
+
+      function validateShareInputs() {
+        const fields = Array.from(settingsList.querySelectorAll(".share-input"));
+        const complete = fields.length === entries.length &&
+          fields.every(field => field.value.trim() !== "" && field.validity.valid);
+        const values = complete ? fields.map(field => Number(field.value)) : [];
+        const sumUnits = complete ? values.reduce((sum, value) => sum + Math.round(value * 100), 0) : 0;
+        const sum = complete ? sumUnits / 100 : null;
+        shareTotal.textContent = "總和 " + (sum === null ? "—" : formatPercent(sum)) + "%";
+        const exactTotal = complete && sumUnits === 10000;
+        draftInvalid = !exactTotal;
+
+        if (!complete) {
+          shareStatus.textContent = "請輸入 0–100 的百分比，最多兩位小數。";
+          shareStatus.dataset.state = "error";
+        } else if (!exactTotal) {
+          const difference = formatPercent(Math.abs(100 - sum));
+          shareStatus.textContent = sum < 100
+            ? "還差 " + difference + "% 才到 100%。"
+            : "超出 " + difference + "%；請調整至 100%。";
+          shareStatus.dataset.state = "error";
+        } else if (values.filter(value => value > 0).length < 2) {
+          shareStatus.textContent = "至少兩個選項需大於 0% 才能轉動。";
+          shareStatus.dataset.state = "error";
+        } else {
+          shareStatus.textContent = "占比已套用到扇形大小和抽中機率。";
+          shareStatus.dataset.state = "success";
+        }
+
+        if (exactTotal) {
+          shares = values.map(value => Math.round(value * 100) / 100);
+          shareDraft = shares.slice();
+          saveShares();
+          drawWheel();
+        } else {
+          shareDraft = values;
+        }
+        updateSpinState();
+        updateWheelCaption();
+      }
+
+      function openSettings() {
+        if (spinning) return;
+        shareDraft = shares.slice();
+        renderSettings();
+        if (typeof settingsDialog.showModal === "function") {
+          settingsDialog.showModal();
+        } else {
+          settingsDialog.setAttribute("open", "");
+        }
+        settingsToggle.setAttribute("aria-expanded", "true");
+        settingsTitle.focus();
+      }
+
+      function discardInvalidDraft() {
+        draftInvalid = false;
+        shareDraft = null;
+        updateSpinState();
+        updateWheelCaption();
+      }
+
+      settingsToggle.addEventListener("click", openSettings);
+      settingsList.addEventListener("input", validateShareInputs);
+      closeSettingsButton.addEventListener("click", () => settingsDialog.close());
+      doneSettingsButton.addEventListener("click", () => settingsDialog.close());
+      settingsDialog.addEventListener("cancel", () => {
+        discardInvalidDraft();
+      });
+      settingsDialog.addEventListener("close", () => {
+        settingsToggle.setAttribute("aria-expanded", "false");
+        discardInvalidDraft();
+      });
+      settingsDialog.addEventListener("click", event => {
+        if (event.target === settingsDialog) settingsDialog.close();
+      });
+      equalShareButton.addEventListener("click", () => {
+        shares = equalPercentages(entries.length);
+        shareDraft = shares.slice();
+        draftInvalid = false;
+        saveShares();
+        renderSettings();
+        updateSpinState();
+        updateWheelCaption();
+        drawWheel();
+        equalShareButton.focus();
+      });
 
       function drawWheel() {
         const size = Math.floor(canvas.getBoundingClientRect().width);
@@ -331,12 +737,15 @@
         ctx.rotate(rotation);
 
         if (entries.length) {
-          const step = TAU / entries.length;
+          let cumulative = 0;
           for (let i = 0; i < entries.length; i++) {
-            const start = -Math.PI / 2 + i * step;
+            const angle = TAU * (shares[i] || 0) / 100;
+            const start = -Math.PI / 2 + cumulative;
+            const end = start + angle;
+            if (angle <= 0) continue;
             ctx.beginPath();
             ctx.moveTo(0, 0);
-            ctx.arc(0, 0, radius, start, start + step);
+            ctx.arc(0, 0, radius, start, end);
             ctx.closePath();
             ctx.fillStyle = colors[i % colors.length];
             ctx.fill();
@@ -344,8 +753,8 @@
             ctx.lineWidth = Math.max(1, size * .003);
             ctx.stroke();
 
-            if (entries.length <= 24) {
-              const middle = start + step / 2;
+            if (entries.length <= 24 && angle >= .14) {
+              const middle = start + angle / 2;
               const screenAngle = normalize(middle + rotation);
               ctx.save();
               ctx.rotate(middle);
@@ -360,6 +769,7 @@
               ctx.fillText(entries[i], 0, 0, radius * .58);
               ctx.restore();
             }
+            cumulative += angle;
           }
         } else {
           ctx.beginPath();
@@ -400,50 +810,40 @@
         }
       }
 
-      function updateOptions() {
-        entries = parseEntries(input.value);
-        countLabel.textContent = entries.length + (entries.length === 1 ? " 個選項" : " 個選項");
-        spinButton.disabled = spinning || entries.length < 2;
-        clearButton.disabled = spinning || input.value.length === 0;
-        if (entries.length < 2) {
-          wheelCaption.textContent = entries.length === 0 ? "先在下方加入至少兩個選項" : "再加入一個選項就可以開始";
-          validationHint.textContent = "輸入至少兩個選項即可開始轉動。清單只保存在目前的瀏覽器，不會同步到其他裝置。";
-        } else if (entries.length > 24) {
-          wheelCaption.textContent = "已加入 " + entries.length + " 個選項 · 名稱過多時以轉盤顏色抽選";
-          validationHint.textContent = "每個選項機率相同。選項超過 24 個時，轉盤會隱藏扇形文字，抽選結果仍會清楚顯示。";
-        } else {
-          wheelCaption.textContent = "已加入 " + entries.length + " 個選項 · 每個選項機率相同";
-          validationHint.textContent = "清單只保存在目前的瀏覽器，不會同步到其他裝置。每一行都是獨立選項。";
-        }
-        try {
-          localStorage.setItem(STORAGE_KEY, input.value);
-          if (saveStatus.lastElementChild.textContent !== "瀏覽器未允許本機保存") {
-            saveStatus.lastElementChild.textContent = "自動保存在這台裝置";
-          }
-        } catch (error) {
-          saveStatus.lastElementChild.textContent = "本機保存空間不可用";
-        }
-        drawWheel();
-      }
-
       function finishSpin(name) {
         wheelWinSound();
         winner.textContent = name;
         resultHint.textContent = "這次就選它吧！選項保留在清單中，可以再轉一次。";
         spinning = false;
         input.disabled = false;
-        clearButton.disabled = input.value.length === 0;
-        spinButton.disabled = entries.length < 2;
+        updateSpinState();
       }
 
       function spin() {
+        if (spinning || draftInvalid || entries.length < 2) return;
+        const activeCount = shares.filter(value => value > 0).length;
+        if (activeCount < 2 || !percentagesHaveValidTotal(shares)) return;
+
         lastSoundMark = Math.floor(rotation / SOUND_STEP);
         wheelSpinSound();
-        if (spinning || entries.length < 2) return;
         const spinEntries = entries.slice();
-        const selectedIndex = Math.floor(Math.random() * spinEntries.length);
-        const step = TAU / spinEntries.length;
-        const targetRotation = -((selectedIndex + .5) * step);
+        const spinShares = shares.slice();
+        const sample = Math.random() * 100;
+        let selectedIndex = -1;
+        let cumulativeShare = 0;
+        for (let i = 0; i < spinShares.length; i++) {
+          cumulativeShare += spinShares[i];
+          if (spinShares[i] > 0 && sample < cumulativeShare) {
+            selectedIndex = i;
+            break;
+          }
+        }
+        if (selectedIndex < 0) selectedIndex = spinShares.findLastIndex(value => value > 0);
+        if (selectedIndex < 0) return;
+
+        const beforeShare = spinShares.slice(0, selectedIndex).reduce((sum, value) => sum + value, 0);
+        const selectedShare = spinShares[selectedIndex];
+        const targetRotation = -((beforeShare + selectedShare / 2) / 100 * TAU);
         const delta = 8 * TAU + normalize(targetRotation - normalize(rotation));
         const startRotation = rotation;
         const startTime = performance.now();
@@ -451,8 +851,7 @@
 
         spinning = true;
         input.disabled = true;
-        clearButton.disabled = true;
-        spinButton.disabled = true;
+        updateSpinState();
         resultHint.textContent = "轉盤正在旋轉，看看命運會選中哪一項…";
 
         function frame(now) {
@@ -489,6 +888,14 @@
       if ("ResizeObserver" in window) {
         new ResizeObserver(drawWheel).observe(canvas);
       }
+
+      try {
+        input.value = localStorage.getItem(STORAGE_KEY) || "";
+      } catch (error) {
+        saveStatus.lastElementChild.textContent = "瀏覽器未允許本機保存";
+      }
+      entries = parseEntries(input.value);
+      shares = loadSavedShares(entries) || equalPercentages(entries.length);
       updateOptions();
     })();
   </script>
